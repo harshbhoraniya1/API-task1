@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <input type="text" id="num">
+    <button onclick="submit()">Submit</button>
+    <button onclick="dis()">Display</button>
+    <table id="di"></table>
+    <script>
+        let o = JSON.parse(localStorage.getItem("employ")) || []
+         function submit(){
+            let obj = {
+                "name" : document.getElementById("name").value,
+                "num" : document.getElementById("num").value
+            }
+            o.push(obj)
+            localStorage.setItem("employ",JSON.stringify(o))
+        }
+        function dis(){
+            let x = o.map((v)=>{
+                return `<tr><td>${v.name}</td><td>${v.num}</td></tr>`
+            })
+            document.getElementById("di").innerHTML = x.join("")
+        }
+    </script>
+</body>
+</html>

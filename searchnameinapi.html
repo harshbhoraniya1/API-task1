@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button onclick="search()">Search</button>
+    <table id="dis"></table>
+    <script>
+        let j
+        fetch("https://660537842ca9478ea17fb73f.mockapi.io/shreyas").then(y=>y.json()).then(y=>{
+            console.log(y);
+            j = y
+            dis(y);
+        })
+        function dis(data){
+            let x = data.map((v)=>{
+                return `<tr><td>${v.id}</td><td>${v.firstname}</td><td>${v.lastname}</td><td>${v.email}</td></tr>`
+            });
+            document.getElementById("dis").innerHTML = x.join("")
+        }
+        function search(){
+            let searchitem = document.getElementById("inp").value;
+            
+            let z = j.filter((v)=>{
+                return v.firstname.includes(searchitem)
+            })
+            dis(z);
+        }
+    </script>
+</body>
+</html>

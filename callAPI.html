@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="dis"></table>
+    <script>
+        fetch("https://660537842ca9478ea17fb73f.mockapi.io/shreyas").then(y=>y.json()).then(y=>{
+            console.log(y);
+            dis(y)
+        })
+        function dis(data){
+            let x = data.map((v)=>{
+                return `<tr><td>${v.id}</td><td>${v.firstname}</td><td>${v.lastname}</td><td>${v.email}</td></tr>`
+            });
+            document.getElementById("dis").innerHTML = x.join("")
+        }
+    </script>
+</body>
+</html>
